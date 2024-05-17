@@ -5,5 +5,10 @@
   "reporters": [
     "...",
     "@parcel/reporter-bundle-analyzer"
-  ]
+  ],
+  "transformers": {
+    "*.hbs": [
+      "parcel-transformer-handlebars"
+    ]
+  }
 }

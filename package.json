@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel --no-source-maps --open",
+    "build": "parcel build --no-source-maps"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +17,11 @@
     "@parcel/transformer-sass": "^2.12.0",
     "buffer": "^6.0.3",
     "parcel": "^2.12.0",
+    "parcel-plugin-handlebars-precompile": "^1.0.2",
+    "parcel-transformer-handlebars": "^1.0.0",
     "posthtml-include": "^2.0.1"
   },
   "dependencies": {
-    "@inventory/parcel-plugin-handlebars": "^1.0.0",
     "axios": "^1.6.8",
     "modern-normalize": "^2.0.0"
   },
