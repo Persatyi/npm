@@ -5,6 +5,8 @@ axios.defaults.headers.common['x-api-key'] =
   'live_K51E2GmO1q5wElup0vSMoBD9LWcpx6vfcCwH8by23k5xGRMdKmpcIkEyqTJYnzLz';
 
 export default class FetchCatsAPI {
+  isVisible = false;
+
   fetchBreeds() {
     return axios.get('/breeds').then(response => {
       return response.data;
@@ -15,5 +17,13 @@ export default class FetchCatsAPI {
     return axios.get(`/images/search?breed_ids=${id}`).then(response => {
       return response;
     });
+  }
+
+  get isVisible() {
+    return this.isVisible;
+  }
+
+  set isVisible(visibility) {
+    this.isVisible = visibility;
   }
 }

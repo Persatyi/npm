@@ -9,6 +9,9 @@
   "transformers": {
     "*.hbs": [
       "parcel-transformer-handlebars"
+    ],
+    "*.scss": [
+      "@parcel/transformer-sass"
     ]
   }
 }

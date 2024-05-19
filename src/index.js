@@ -1,14 +1,15 @@
+import './sass/index.scss';
 import FetchCatsAPI from './js/services/cat-api';
 import { catList } from './layouts/catList';
 import { catTemplate } from './layouts/catTamplate';
-// import catsListTpl from './layouts/catList.hbs';
 // import Handlebars from 'handlebars';
-// console.log('🚀 ~ catsListTpl:', catsListTpl());
+// import catsListTpl from './layouts/catList.hbs';
 
 const refs = {
   select: document.querySelector('.breed-select'),
   loader: document.querySelector('.loader'),
   catInfo: document.querySelector('.cat-info'),
+  error: document.querySelector('error'),
 };
 
 const fetchCats = new FetchCatsAPI();
@@ -16,12 +17,16 @@ const fetchCats = new FetchCatsAPI();
 fetchCats
   .fetchBreeds()
   .then(response => {
+    fetchCats.isVisible = false;
     const markup = response.map(catList);
-    refs.select.insertAdjacentHTML('beforeend', markup);
+    renderElements(refs.select, markup);
   })
-  .catch(console.log)
+  .catch(error => {
+    console.log(error);
+    fetchCats.isVisible = false;
+  })
   .finally(() => {
-    refs.loader.classList.add('is-hidden');
+    changeVisibility(fetchCats.isVisible);
   });
 
 refs.select.addEventListener('change', e => {
@@ -38,3 +43,7 @@ refs.select.addEventListener('change', e => {
     })
     .catch(console.log);
 });
+
+function renderElements(ref, markup, position = 'beforeend') {
+  ref.insertAdjacentHTML(position, markup);
+}
